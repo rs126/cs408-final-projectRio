@@ -29,3 +29,6 @@ TODO: Replace the wireframe below with you own design.
 Link to wireframe:
 
 https://app.moqups.com/Ku2hFYA6wbOoiWY6rWVvtqhYNmgFxnVZ/view/page/ad64222d5
+
+## Citation
+- For select element: https://www.w3schools.com/tags/tag_select.asp
