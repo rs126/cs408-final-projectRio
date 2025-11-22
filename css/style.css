@@ -1,4 +1,40 @@
-h1{
-  border-color: #d3e644;
-  border-style: dashed;
+.bodydiv{
+  margin: 0 auto;
+  margin-top: 30vh;
+  width: 40vw;
+}
+
+
+.XboxPic{
+  position: fixed;
+  top: 5vh;
+  left: 5vw;
+  height: auto;
+  width: 10%;
+}
+
+
+
+.Dpadpic{
+  position: fixed;
+  top: 5vh;
+  right: 5vh;
+  height: auto;
+  width: 10%; 
+}
+
+.NESPic{
+  position: fixed;
+  bottom: 5vh;
+  left: 5vw;
+  height: auto;
+  width: 10%;
+}
+
+.DicePic{
+  position: fixed;
+  bottom: 5vh;
+  right: 5vw;
+  height: auto;
+  width: 10%;
 }
