@@ -38,3 +38,26 @@
   height: auto;
   width: 10%;
 }
+
+
+.Wishlisttab th, td{
+  border: 2px solid black;
+
+}
+
+.WishlistController{
+  width: 40%;
+  height: auto;
+}
+
+.BodyDiv2{
+  margin: 0 auto;
+  margin-top: 30vh;
+  width: 70vw;
+}
+
+.WishListBudgetdiv{
+  position: fixed;
+  top: 5vw;
+  right: 6vw;;
+}

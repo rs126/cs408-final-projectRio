@@ -3,23 +3,37 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Hello World!</title>
+  <title>Personal Wishlist</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
+    <div class="WishListBudgetdiv">
+        <p>Budget:</p>
+        <input type="text" placeholder="$$$">
+        <br>
+        <button>Modify Budget</button>
+    </div>
     <div class="BodyDiv2">
-        <table>
+        <h1>Your Wishlist</h1>
+        <select  name="sortby" id="sortby">
+            <option value="Image">Image</option>
+            <option value="Game Name">GAme Name</option>
+            <option value="Price">Price</option>
+            <option value="Usage">Usage</option>
+        </select>
+        <table class="Wishlisttab">
             <th>
                 <td>Image</td>
                 <td>Game Name</td>
                 <td>Price</td>
                 <td>Where to Buy</td>
                 <td>Used/New</td>
-                <td>Additiona Notes</td>
+                <td>Additional Notes</td>
             </th>
         </table>
+        <img class="WishlistController" src="Controller2222.png" alt="XboxControler">
     </div>
 </body>
