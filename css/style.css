@@ -154,3 +154,13 @@
 
 }
 
+
+@media screen and (min-width: 900px){
+  .logoutdiv{
+    width: 10vw;
+  }
+  .overhead{
+    width: 90vw;
+  }
+}
+
