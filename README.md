@@ -20,9 +20,9 @@ Another stretch goal I would add is a feature that would automatically parse thr
 
 TODO: Replace the wireframe below with you own design.
 
-![WelcomePagefinal](Welocmepagefinal.png)
-![PersonalList](PersonaList.png)
-![FinalWebsiteUserPage](FinalWebsiteUserPage.png)
+![img/WelcomePagefinal](Welocmepagefinal.png)
+![img/PersonalList](PersonaList.png)
+![img/FinalWebsiteUserPage](FinalWebsiteUserPage.png)
 
 
 
