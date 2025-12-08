@@ -32,3 +32,4 @@ https://app.moqups.com/Ku2hFYA6wbOoiWY6rWVvtqhYNmgFxnVZ/view/page/ad64222d5
 
 ## Citation
 - For select element: https://www.w3schools.com/tags/tag_select.asp
+- For Login example script: Google Gemini

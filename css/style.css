@@ -1,6 +1,6 @@
 .bodydiv{
   margin: 0 auto;
-  margin-top: 30vh;
+  margin-top: 20vh;
   width: 40vw;
 }
 
@@ -40,10 +40,25 @@
 }
 
 
-.Wishlisttab th, td{
-  border: 2px solid black;
-
+table {
+  border-collapse: collapse;
+  border: 2px solid rgb(140 140 140);
+  letter-spacing: 1px;
 }
+
+
+
+th, td {
+  border: 1px solid rgb(160 160 160);
+  padding: 8px 10px;
+}
+
+
+
+td:nth-child(even), th:nth-child(even) {
+  background-color: rgb(237 238 242);
+}
+
 
 .WishlistController{
   width: 40%;
@@ -52,8 +67,8 @@
 
 .BodyDiv2{
   margin: 0 auto;
-  margin-top: 30vh;
-  width: 70vw;
+  margin-top: 5vh;
+  width: 60vw;
 }
 
 .Budgetdiv{ 
@@ -83,10 +98,19 @@
 
 }
 
+.OtherdealsButton:hover{
+  background-color: rgb(53, 194, 17);
+}
+
 
 .BacktoWishlist a{
   text-decoration: none;
   color: black;
+  
+}
+
+.BacktoWishlist:hover{
+  background-color:rgb(53, 194, 17);
 }
 
 .BacktoWishlist{
@@ -102,6 +126,7 @@
   height: 50px;
   display: flex;
   justify-content: space-between;
+  background-color: white;
   
   
   
@@ -154,6 +179,11 @@
 
 }
 
+.logoutdiv p{
+  text-decoration: none;
+  color: black;
+}
+
 
 @media screen and (min-width: 900px){
   .logoutdiv{
@@ -163,4 +193,95 @@
     width: 90vw;
   }
 }
+
+
+@media screen and (max-width: 700px){
+  table{
+    font-size: 10px;
+  }
+}
+
+
+.uploaddiv{
+  padding: 20px;
+  margin: auto;
+  width: 350px;
+  margin-top: 10px;
+  
+ 
+  border: 2px solid black;
+}
+
+.bdiv1{
+  display: grid;
+  grid-template-columns: 60vw 20vw;
+  gap: 10px;
+  margin: auto;
+  width: 90vw;
+}
+
+@media screen and (max-width: 1100px){
+  .bdiv1{
+    grid-template-columns: 60vw;
+  }
+
+}
+
+.BodyDiv2 .WishlistController{
+  margin-left: 16vw;
+}
+
+.hrdiv{
+  width: 100px;
+  left: 0;
+}
+
+hr{
+  width: 250px;
+  border-color: red;
+}
+
+.bdiv1 h1{
+  text-align: center;
+}
+
+.bdiv2 h1{
+  text-align: center;
+}
+
+button[type=submit]{
+  width:150px;
+  height: 50px;
+  
+  margin-top: 5px;
+  
+}
+
+button[type=submit]:hover{
+  background-color: rgb(13, 216, 13);
+
+}
+
+td img{
+  height: auto;
+  width: 80%;
+}
+
+.Wishlisttab td img{
+  height: auto;
+  width: 50%;
+}
+
+.Wishlisttab td button:hover{
+  background-color: red;
+}
+
+.bodydiv3 td button:hover{
+  background-color: rgb(9, 238, 9);
+}
+
+.Note{
+  font-size: x-small;
+}
+
 

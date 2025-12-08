@@ -1,18 +1,21 @@
 window.onload = loaded;
 
 /**
- * Simple Function that will be run when the browser is finished loading.
+ * AI Use: AI Assisted
+ * @param {*} event Login event 
  */
-function loaded() {
-    // Assign to a variable so we can set a breakpoint in the debugger!
-    const hello = sayHello();
-    console.log(hello);
-}
+function handleLogin(event) {
+    //Prevent page reload
+    event.preventDefault(); 
+    
+    // Retrieve values
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    
+    console.log("Simulated Login Attempt:");
+    console.log("Username:", username);
+    console.log("Password:", password);
 
-/**
- * This function returns the string 'hello'
- * @return {string} the string hello
- */
-export function sayHello() {
-    return 'hello';
+    //Perform the redirection
+    window.location.href = 'PersonalWishlist.html'; 
 }

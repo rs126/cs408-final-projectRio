@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    
+
 
     <div class="overhead">
         <div class="headerbuttondiv">
@@ -19,59 +19,138 @@
         <div class="Budgetdiv">
             <p>Budget:</p>
             <div class="div1">
-                
+
                 <input type="text" size="4" maxsize="4" placeholder="$$$">
-            <br>
+                <br>
                 <button class="mbudget">Modify Budget</button>
             </div>
         </div>
     </div>
-    
-    <a href="index.html"><div class="logoutdiv"><div><img class="signoutpng" src="/img/Signout.png" alt=""></div><p>Log Out</p></button></div></a>
+
+    <a href="index.html">
+        <div class="logoutdiv">
+            <div><img class="signoutpng" src="/img/Signout.png" alt=""></div>
+            <p>Log Out</p></button>
+        </div>
+    </a>
     <br><br><br>
 
-    <div class="bodydiv3">
-        <h1>Other Good Deals</h1>
-        <select name="sortby" id="sortby">
-            <option value="Image">Image</option>
-            <option value="Game Name">GAme Name</option>
-            <option value="Price">Price</option>
-            <option value="Usage">Usage</option>
-        </select>
+    <div class="bdiv1">
+        <div class="bodydiv3">
+            <h1>Other Good Deals</h1>
+            
+            <select name="sortby" id="sortby">
+                <option value="Image">Image</option>
+                <option value="Game Name">Game Name</option>
+                <option value="Price">Price</option>
+                <option value="Usage">Usage</option>
+            </select>
 
-        <h2>Deals I've Found</h2>
-        <hr>
-        <table class="FoundDealstab1">
-            <th>
-            <td>Image</td>
-            <td>Game Name</td>
-            <td>Price</td>
-            <td>Where to Buy</td>
-            <td>Used/New</td>
-            <td>Additional Notes</td>
-            </th>
-        </table>
 
-        <h2>Deals Youve've Found</h2>
-        <hr>
-        <table class="FoundDealstab2">
-            <th>
-            <td>Image</td>
-            <td>Game Name</td>
-            <td>Price</td>
-            <td>Where to Buy</td>
-            <td>Used/New</td>
-            <td>Additional Notes</td>
-            </th>
-        </table>
+            <h2>Deals I've Found</h2>
+            <div class="hrdiv">
+                <hr>
+            </div>
 
-    </div>
+            
 
-    <h2>Post what you've found:</h2>
+            <table class="FoundDealstab1">
+                <tr>
+                    <th>Image</th>
+                    <th>Game Name</th>
+                    <th>Price</th>
+                    <th>Where to Buy</th>
+                    <th>Used/New</th>
+                    <th>Additional Notes</th>
+                    <th>Add to Wishlist</th>
+                </tr>
+                <tr>
+                    <td><img src="https://m.media-amazon.com/images/I/81KyUsBJsVL._SL1482_.jpg" alt=""></td>
+                    <td>Pokemon Yellow Special Pikachu Edition</td>
+                    <td>$40</td>
+                    <td>Amazon</td>
+                    <td>Used</td>
+                    <td><strong>"DEFINATELY NOT FAKE" totally not actually $100</strong></td>
+                    <td><button>Add</button></td>
+                </tr>
 
-    <div class="uploaddiv">
-        <input type="file">
-        
+            </table>
+
+
+            <h2>Deals Youve've Found</h2>
+            <div class="hrdiv">
+                <hr>
+            </div>
+            <table class="FoundDealstab2">
+                <tr>
+                    <th>Image</th>
+                    <th>Game Name</th>
+                    <th>Price</th>
+                    <th>Where to Buy</th>
+                    <th>Used/New</th>
+                    <th>Additional Notes</th>
+                    <th>Add to Wishlist</th>
+                </tr>
+
+                <tr>
+                    <td><img src="https://m.media-amazon.com/images/I/71sGLZSo3XL._SL1500_.jpg" alt=""></td>
+                    <td>Super Mario Wii</td>
+                    <td>Vip Gamestore</td>
+                    <td>$30</td>
+                    <td>Used</td>
+                    <td>Its used but probably in good condtion. If not you can ask them to buff the disk to remove
+                        scratches.</td>
+                    <td><button>Add</button></td>
+
+                </tr>
+                                    <tr>
+                    <td><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/275850/5123063ede60c6db0f79497774f00de784db7358/header_alt_assets_25.jpg?t=1763984433" alt=""></td>
+                    <td>No Mans Sky</td>
+                    <td>$23</td>
+                    <td><a href="https://store.steampowered.com/app/275850/No_Mans_Sky/">Steam</a></td>
+                    <td>New</td>
+                    <td><strong>Looks cool!</strong></td>
+                    <td><button>Add</button></td>
+                </tr>
+            </table>
+
+        </div>
+
+
+
+        <div class="uploaddiv">
+            <form action="">
+                <h2>Post what you've found:</h2>
+                <div class="hrdiv">
+                    <hr>
+                </div>
+                <label for="Picture">Upload Image:</label><br><br>
+                <input id="Picture" type="file" placeholder="Image">
+                <br><br>
+                <label for="GameName">Game Name:</label><br><br>
+                <input id="GameName" type="text" placeholder="Name">
+                <br><br>
+                <label for="Price">Price:</label><br><br>
+                <input id="Price" type="text" placeholder="Price">
+                <br><br>
+                <label for="UsedNew">Used or New:</label><br><br>
+                <input id="UsedNew" type="text" placeholder="Used/New">
+                <br><br>
+                <label for="WheretoBuy">Where to Buy:</label><br><br>
+                <input id="WheretoBuy" type="text" placeholder="Online/Physical Location Name">
+                <br><br>
+                <label for="link">Link if online</label><br><br>
+                <input id="link" type="text" placeholder="URL to game">
+                <p class="Note">Note: if you want shorter URL's you can use the clearURLs Extension in Firefox.
+                    <br>It removes tracking info from URL's automatically
+                </p>
+                <label for="AdditionalNotes">Additional Notes</label><br><br>
+                <textarea name="" id="AdditionalNotes" rows="10" cols="40"
+                    placeholder="Some extra details I would like to note are"></textarea>
+                <button type="submit">Submit</button>
+            </form>
+
+        </div>
     </div>
 
 
