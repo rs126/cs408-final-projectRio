@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+<body data-page-id="P2">
 
 
     <div class="overhead">
@@ -38,7 +38,7 @@
     <div class="bdiv1">
         <div class="bodydiv3">
             <h1>Other Good Deals</h1>
-            
+
             <select name="sortby" id="sortby">
                 <option value="Image">Image</option>
                 <option value="Game Name">Game Name</option>
@@ -52,7 +52,7 @@
                 <hr>
             </div>
 
-            
+
 
             <table class="FoundDealstab1">
                 <tr>
@@ -64,7 +64,7 @@
                     <th>Additional Notes</th>
                     <th>Add to Wishlist</th>
                 </tr>
-                <tr>
+                <!-- <tr>
                     <td><img src="https://m.media-amazon.com/images/I/81KyUsBJsVL._SL1482_.jpg" alt=""></td>
                     <td>Pokemon Yellow Special Pikachu Edition</td>
                     <td>$40</td>
@@ -72,7 +72,7 @@
                     <td>Used</td>
                     <td><strong>"DEFINATELY NOT FAKE" totally not actually $100</strong></td>
                     <td><button>Add</button></td>
-                </tr>
+                </tr> -->
 
             </table>
 
@@ -81,7 +81,7 @@
             <div class="hrdiv">
                 <hr>
             </div>
-            <table class="FoundDealstab2">
+            <table class="FoundDealstab2" id="user-table">
                 <tr>
                     <th>Image</th>
                     <th>Game Name</th>
@@ -92,7 +92,7 @@
                     <th>Add to Wishlist</th>
                 </tr>
 
-                <tr>
+                <!-- <tr>
                     <td><img src="https://m.media-amazon.com/images/I/71sGLZSo3XL._SL1500_.jpg" alt=""></td>
                     <td>Super Mario Wii</td>
                     <td>Vip Gamestore</td>
@@ -111,7 +111,7 @@
                     <td>New</td>
                     <td><strong>Looks cool!</strong></td>
                     <td><button>Add</button></td>
-                </tr>
+                </tr> -->
             </table>
 
         </div>
@@ -119,13 +119,13 @@
 
 
         <div class="uploaddiv">
-            <form action="">
+            <form id="formelement" action="">
                 <h2>Post what you've found:</h2>
                 <div class="hrdiv">
                     <hr>
                 </div>
-                <label for="Picture">Upload Image:</label><br><br>
-                <input id="Picture" type="file" placeholder="Image">
+                <label for="Picture">Image URL:</label><br><br>
+                <input id="Picture" type="text" placeholder="Image">
                 <br><br>
                 <label for="GameName">Game Name:</label><br><br>
                 <input id="GameName" type="text" placeholder="Name">
@@ -134,7 +134,11 @@
                 <input id="Price" type="text" placeholder="Price">
                 <br><br>
                 <label for="UsedNew">Used or New:</label><br><br>
-                <input id="UsedNew" type="text" placeholder="Used/New">
+                <select id="UsedNew">
+                    <option value=""> select</option>
+                    <option value="new">New</option>
+                    <option value="used">Used</option>
+                </select>
                 <br><br>
                 <label for="WheretoBuy">Where to Buy:</label><br><br>
                 <input id="WheretoBuy" type="text" placeholder="Online/Physical Location Name">
@@ -145,12 +149,15 @@
                     <br>It removes tracking info from URL's automatically
                 </p>
                 <label for="AdditionalNotes">Additional Notes</label><br><br>
-                <textarea name="" id="AdditionalNotes" rows="10" cols="40"
-                    placeholder="Some extra details I would like to note are"></textarea>
-                <button type="submit">Submit</button>
+                <textarea name="AdditionaNotes" id="AdditionalNotes" rows="10" cols="40"
+                    placeholder="Some extra details I would like to note are..."></textarea>
+                <button id="send-data" type="button">Submit</button>
             </form>
 
         </div>
+        <script src="js/main.js">
+            
+        </script>
     </div>
 
 
