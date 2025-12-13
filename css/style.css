@@ -4,6 +4,10 @@
   width: 40vw;
 }
 
+.Refreshdata:hover{
+  background-color: rgb(116, 228, 82);
+}
+
 
 .XboxPic{
   position: fixed;
@@ -136,6 +140,8 @@ td:nth-child(even), th:nth-child(even) {
   margin-top: 15px;
   
 }
+
+
 
 .headerbuttondiv{
   display: flex;
