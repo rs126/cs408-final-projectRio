@@ -18,7 +18,7 @@ Another stretch goal I would add is a feature that would automatically parse thr
 
 This project assumes that the user has access to AWS with the required setup for the backend. To use this project the user must have VSCode or a Similar IDE with access to the Live Preview Extension. They then must open the index.html file and click on the square box in the top right with the magnifying glass. They must then either copy that link into a browser or access the webpage in the IDE. 
 
-On the index preview the user will be prompted to sign in with credentials. As of right now, since this is just a smaller project the user can enter anything as the username and password for a fake account to be created. They will then be able to add games as specified in the form on the right. Then they will be able to see other games on the Other Deals Page that they will be able to add to thier list.
+On the index preview the user will be prompted to sign in with credentials. As of right now, since this is just a smaller project the user can enter anything as the username and password for a fake account to be created. They will then be able to add games as specified in the form on the right. Then they will be able to see other games on the Other Deals Page that they will be able to add to their list.
 
 ## Known bugs and Issues
 
