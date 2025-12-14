@@ -2,43 +2,76 @@ const BASE_URL = "https://56pkakyp2j.execute-api.us-east-2.amazonaws.com";
 const PAGE_ID = "P1"; // this file is for the PersonalWishlist page (P1)
 
 /**
+ * Handles the Login Event on the Main Landing Page
+ * 
  * AI Use: AI Assisted
  * @param {*} event Login event 
  */
 function handleLogin(event) {
+  //Prevent default behavior
   event.preventDefault();
 
+  //Extract login information from webpage
   const usernameEl = document.getElementById("username");
   const passwordEl = document.getElementById("password");
 
+  //Parse login information. Password not stored
   const username = (usernameEl?.value || "").trim().toLowerCase();
-  const password = passwordEl?.value || ""; // not used, not stored
+  const password = passwordEl?.value || ""; 
 
-  if (!username) return alert("Please enter a username.");
+  if (!username){
+     return alert("Please enter a username.");
+    }
 
+  //Log for debugging, !! ensures user put in password by turning it to boolean
   console.log("Simulated Login Attempt:", { username, passwordProvided: !!password });
 
+  //Create user ID to help track user content later
   const userId = `u:${username}`;
   localStorage.setItem("userId", userId);
 
+  //Return to Personal wishlist page
   window.location.href = "PersonalWishlist.html";
 }
 
-// =====================
-// Shared helpers
-// =====================
+
+/**
+ * Parses input for Money value
+ * 
+ * AI Use: AI Assisted
+ * @param {*} raw 
+ * @returns n -ie a validated number
+ */
 function parseMoney(raw) {
+  //Parse raw input for monetary value. Ensure its not null or undefined.
   const cleaned = (raw || "").toString().replace("$", "").trim();
   const n = parseFloat(cleaned);
+  //Ensures n is a finite number and not anything else.
   return Number.isFinite(n) ? n : null;
 }
 
+/**
+ * Cleans and validates new/used input
+ * 
+ * AI Use: AI Assisted
+ * @param {*} raw 
+ * @returns s -ie the status for the selector or null
+ */
 function normalizeStatus(raw) {
   const s = (raw || "").trim().toLowerCase();
   if (s === "new" || s === "used") return s;
   return null;
 }
 
+
+/**
+ * Method used to help parse select value
+ * helps with future proofing.
+ * 
+ * AI Use: Ai Assisted
+ * @param {*} v 
+ * @returns  status, price, name - parsed value used to sort data
+ */
 function sortKeyFromSelectValue(v) {
   const s = (v || "").toLowerCase();
   if (s === "name" || s === "game name") return "name";
@@ -47,10 +80,21 @@ function sortKeyFromSelectValue(v) {
   return "name";
 }
 
+
+/**
+ * Function used to sort items depending on whats picked in dropdown.
+ * 
+ * AI Use: AI Assisted
+ * @param {*} list 
+ * @param {*} selectValue 
+ * @returns sorted - list of sorted values, return value depends on sort key function
+ */
 function sortItems(list, selectValue) {
+  //Extract value using previous function
   const key = sortKeyFromSelectValue(selectValue);
   const sorted = [...list];
 
+  //Use sort method to sort values in place
   sorted.sort((a, b) => {
     if (key === "price") {
       const ap = typeof a.price === "number" ? a.price : parseFloat(a.price);
@@ -64,15 +108,24 @@ function sortItems(list, selectValue) {
   return sorted;
 }
 
-// =====================
-// Budget (shared across pages)
-// Stored as ONE item per user:
-// { id: "budget#u:username", type:"budget", userId:"u:username", amount:Number }
-// =====================
+/**
+ * Returns the Users Budget based on ID. helps track individual budgets
+ * 
+ * AI Use: AI assisted
+ * @param {*} userId 
+ * @returns budget#userID 
+ */
 function budgetKey(userId) {
   return `budget#${userId}`;
 }
 
+/**
+ * used to modify the budget based on users needs
+ * 
+ * AI Use: AI Assisted
+ * @param {*} amount 
+ * @returns only if no input is put into budget
+ */
 function setBudgetUI(amount) {
   const input = document.getElementById("budget-input");
   if (!input) return;
@@ -81,15 +134,24 @@ function setBudgetUI(amount) {
   input.placeholder = `$${Number(amount).toFixed(2)}`;
 }
 
+/**
+ * Used to load and modify logged in users budget on webpage
+ * 
+ * AI Use: AI Assisted
+ * @param {*} userId 
+ * @returns 
+ */
 function loadBudgetBalance(userId) {
   const input = document.getElementById("budget-input");
   if (!input) return;
 
   const xhr = new XMLHttpRequest();
+  //retrieves user budget from AWS
   xhr.open("GET", `${BASE_URL}/items/${encodeURIComponent(budgetKey(userId))}`);
   xhr.onload = () => {
     if (xhr.status !== 200) return; // no budget saved yet is fine
 
+    //Parse response for desired data
     let item;
     try {
       item = JSON.parse(xhr.responseText);
@@ -105,6 +167,14 @@ function loadBudgetBalance(userId) {
   xhr.send();
 }
 
+/**
+ * Saves budget to AWS, and updates ui
+ * 
+ * AI Use: AI Assisted
+ * @param {*} userId 
+ * @param {*} newAmount 
+ * @param {*} onDone 
+ */
 function saveBudgetBalance(userId, newAmount, onDone) {
   const payload = {
     id: budgetKey(userId),
@@ -128,12 +198,18 @@ function saveBudgetBalance(userId, newAmount, onDone) {
   xhr.send(JSON.stringify(payload));
 }
 
+/**
+ * Enables front end modification of budget and leverages other methods
+ * to update budget on backend.
+ * 
+ * @returns - only if user id or input are null
+ */
 function initBudgetUI() {
   const input = document.getElementById("budget-input");
   const btn = document.getElementById("budget-save");
   if (!input || !btn) return;
 
-  btn.type = "button"; // prevent form submits / refresh
+  btn.type = "button";
 
   const userId = localStorage.getItem("userId");
   if (!userId) return;
@@ -150,10 +226,12 @@ function initBudgetUI() {
   loadBudgetBalance(userId);
 }
 
-// =====================
-// Personal Wishlist (P1)
-// Budget only deducts on DELETE
-// =====================
+/**
+ * Only runs on the Personal Wishlist Page. Renders operations related to user wishlist page
+ * 
+ * AI Use: AI Assisted
+ * @returns - ON Error
+ */
 function initWishlistP1() {
   const PAGE_ID = "P1";
 
@@ -164,7 +242,8 @@ function initWishlistP1() {
   const refreshBtn = document.getElementById("refresh-data");
   const sortSelect = document.getElementById("sortby");
 
-  if (!table || !sendBtn) return; // not on P1 page
+  //Return if elements dont exist
+  if (!table || !sendBtn) return;
 
   const userId = localStorage.getItem("userId");
   if (!userId) {
@@ -174,14 +253,23 @@ function initWishlistP1() {
 
   let currentItems = [];
 
+  //Clear existing rows
   function clearRows() {
     table.querySelectorAll("tr:not(:first-child)").forEach(r => r.remove());
   }
 
+  /**
+   * Renders new rows for table to update
+   * 
+   * AI Use: AI Assisted
+   * @param {*} items 
+   * @returns - on error
+   */
   function render(items) {
     currentItems = Array.isArray(items) ? [...items] : [];
     clearRows();
 
+    //If No items then set default value
     if (!items || items.length === 0) {
       const row = table.insertRow();
       const cell = row.insertCell(0);
@@ -213,7 +301,7 @@ function initWishlistP1() {
       row.insertCell(2).textContent =
         typeof item.price === "number" ? `$${item.price}` : (item.price ?? "");
 
-      // Where to Buy
+      // Where to Buy, links url to location for user convience
       const whereCell = row.insertCell(3);
       if (item.location && item.link) {
         const a = document.createElement("a");
@@ -246,11 +334,22 @@ function initWishlistP1() {
     });
   }
 
+  /**
+   * Used to apply filter to sort items
+   * 
+   * AI Use: AI Assisted
+   * @returns - On Error, invalid sort
+   */
   function applySortIfSelected() {
     if (!sortSelect || !sortSelect.value) return;
     render(sortItems(currentItems, sortSelect.value));
   }
 
+  /**
+   * Retrieves users items from AWS and renders them on webpage 
+   * 
+   * AI Use: AI Assisted
+   */
   function loadItems() {
     const xhr = new XMLHttpRequest();
     xhr.open("GET", `${BASE_URL}/items`);
@@ -276,6 +375,14 @@ function initWishlistP1() {
     xhr.send();
   }
 
+  /**
+   * Deletes item from the table by removing its row, Also affects AWS backend.
+   * Used when User actually deletes row on frontend.
+   * 
+   * AI Use: AI Assisted
+   * @param {*} itemId 
+   * @param {*} row 
+   */
   function deleteItemOnly(itemId, row) {
     const xhr = new XMLHttpRequest();
     xhr.open("DELETE", `${BASE_URL}/items/${encodeURIComponent(itemId)}`);
@@ -290,7 +397,17 @@ function initWishlistP1() {
     xhr.send();
   }
 
+  /**
+   * Used to deduct the price of an item from budget when delete is clicked on Personal
+   * Wishlist
+   * 
+   * AI Use: AI Assisted
+   * @param {*} item 
+   * @param {*} row 
+   * @returns 
+   */
   function buyAndRemove(item, row) {
+    //Helps ensure price can be extracted despite being a number or string
     const price = typeof item.price === "number" ? item.price : parseFloat(item.price);
     if (!Number.isFinite(price)) return alert("Invalid price. Cannot deduct budget.");
 
@@ -311,10 +428,11 @@ function initWishlistP1() {
     });
   }
 
-  // Add item (NO budget change)
+  // Add item 
   sendBtn.onclick = () => {
     const unique = crypto.randomUUID ? crypto.randomUUID() : String(Date.now());
 
+    //Ensures properties of game are set
     const name = document.getElementById("GameName").value.trim();
     const image = document.getElementById("Picture").value.trim();
     const price = parseMoney(document.getElementById("Price").value);
@@ -328,6 +446,7 @@ function initWishlistP1() {
     if (price === null) return alert("Invalid price");
     if (!status) return alert("Status must be 'new' or 'used'");
 
+    //Cleaned data to be sent to AWS
     const payload = {
       id: `${PAGE_ID}-${unique}`,
       pageId: PAGE_ID,
@@ -343,6 +462,7 @@ function initWishlistP1() {
 
     if (link) payload.link = link;
 
+    //Send data to AWS
     const xhr = new XMLHttpRequest();
     xhr.open("PUT", `${BASE_URL}/items`);
     xhr.setRequestHeader("Content-Type", "application/json");
@@ -367,13 +487,16 @@ function initWishlistP1() {
   loadItems();
 }
 
-// =====================
-// Other Deals (P2) user-generated table only
-// - Loads P2 games into #user-table
-// - "Add" copies item to P1 for THIS user
-// =====================
+
+/**
+ *Renders table items on Other Deals Page. Similar functionality to initWishlistP1()
+ * 
+ * AI Use: AI Assisted
+ * @returns - on error
+ */
 function initDealsP2() {
-  const pageId = document.body?.dataset?.pageId; // expect "P2"
+  // expects "P2"
+  const pageId = document.body?.dataset?.pageId; 
   const table = document.getElementById("user-table");
   const sendBtn = document.getElementById("send-data");
   const sortSelect = document.getElementById("sortby");
@@ -387,6 +510,13 @@ function initDealsP2() {
     table.querySelectorAll("tr:not(:first-child)").forEach(r => r.remove());
   }
 
+    /**
+   * Renders new rows for table to update
+   * 
+   * AI Use: AI Assisted
+   * @param {*} items 
+   * @returns - on error
+   */
   function render(items) {
     currentItems = Array.isArray(items) ? [...items] : [];
     clearRows();
@@ -414,7 +544,7 @@ function initDealsP2() {
       row.insertCell(2).textContent =
         typeof item.price === "number" ? `$${item.price}` : (item.price ?? "");
 
-      // Where to Buy
+      // Where to Buy, links url to location for user convenience
       const whereCell = row.insertCell(3);
       if (item.location && item.link) {
         const a = document.createElement("a");
@@ -447,11 +577,23 @@ function initDealsP2() {
     });
   }
 
+  /**
+   * Used to apply filter to sort items
+   * 
+   * AI Use: AI Assisted
+   * @returns - on error, improper sort
+   */
   function applySortIfSelected() {
     if (!sortSelect || !sortSelect.value) return;
     render(sortItems(currentItems, sortSelect.value));
   }
 
+
+  /**
+   * Retrieves users items from AWS and renders them on webpage
+   * 
+   * AI Use: AI Assisted
+   */
   function loadItems() {
     const xhr = new XMLHttpRequest();
     xhr.open("GET", `${BASE_URL}/items`);
@@ -475,12 +617,21 @@ function initDealsP2() {
     xhr.send();
   }
 
+  /**
+   * Used to Add item to Personal Wishlist
+   * 
+   * AI Use: AI Assisted
+   * @param {*} item 
+   * @param {*} btn 
+   * @returns - on error
+   */
   function addToWishlist(item, btn) {
     const userId = localStorage.getItem("userId");
     if (!userId) return alert("Please log in again.");
 
     const unique = crypto.randomUUID ? crypto.randomUUID() : String(Date.now());
 
+    //Data to be sent to AWS
     const payload = {
       id: `P1-${unique}`,
       pageId: "P1",
@@ -528,6 +679,7 @@ function initDealsP2() {
     if (price === null) return alert("Invalid price");
     if (!status) return alert("Pick new or used");
 
+    //Data to be sent to AWS
     const payload = {
       id: `P2-${unique}`,
       pageId: "P2",
@@ -565,11 +717,13 @@ function initDealsP2() {
   loadItems();
 }
 
-// =====================
-// Bootstrapping
-// =====================
+/**
+ * Waits for webpage to load then renders content.
+ * 
+ * AI Use: AI Assisted
+ */
 document.addEventListener("DOMContentLoaded", () => {
-  initBudgetUI();   // works on ANY page with budget elements
-  initWishlistP1(); // runs only on P1 page (based on DOM)
-  initDealsP2();    // runs only on P2 page (based on body data-page-id)
+  initBudgetUI();  
+  initWishlistP1();
+  initDealsP2();    
 });
