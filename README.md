@@ -33,3 +33,9 @@ https://app.moqups.com/Ku2hFYA6wbOoiWY6rWVvtqhYNmgFxnVZ/view/page/ad64222d5
 ## Citation
 - For select element: https://www.w3schools.com/tags/tag_select.asp
 - For Login example script: Google Gemini
+- For Backend Rendering of tables - Chat GPT
+- For Budget Modification - Chat GPT
+- For Unique Login - Chat GPT
+- Unique Sorting - Chat GPT
+- For Add to Wishlist Button - Chat GPT
+- For Remove From Personal Wishlist - Chat GPT
