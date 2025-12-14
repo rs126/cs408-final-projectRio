@@ -288,8 +288,8 @@ function initWishlistP1() {
         img.src = item.image;
         img.alt = item.name || "game image";
         img.loading = "lazy";
-        img.style.maxWidth = "90px";
-        img.style.maxHeight = "90px";
+        // img.style.maxWidth = "90px";
+        // img.style.maxHeight = "90px";
         img.onerror = () => img.remove();
         imgCell.appendChild(img);
       }
@@ -531,8 +531,8 @@ function initDealsP2() {
         img.src = item.image;
         img.alt = item.name || "deal image";
         img.loading = "lazy";
-        img.style.maxWidth = "90px";
-        img.style.maxHeight = "90px";
+        // img.style.maxWidth = "90px";
+        // img.style.maxHeight = "90px";
         img.onerror = () => img.remove();
         imgCell.appendChild(img);
       }
